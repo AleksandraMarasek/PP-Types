@@ -1,6 +1,9 @@
 ﻿// Write required code.
 
 // Data - do not change it in code!
+using System.Diagnostics.Metrics;
+using System.Runtime.ExceptionServices;
+
 string[] names = {
     "Mickey Mouse", "Minnie Mouse", "Donald Duck", "Goofy", "Pluto", "Daisy Duck", "Simba", "Nala", 
     "Timon", "Pumbaa", "Mufasa", "Ariel", "Flounder", "Sebastian", "Ursula", "Belle", "Beast", "Gaston", 
@@ -10,25 +13,59 @@ string[] names = {
 
 
 // Print all array elements, *perLine* elements per one line
-// After all elements except last one should be ", " - also on the end of lines.
-// After last element should be ".".
+
+for (int i = 0; i < names.Length; i++)
+{
+    if (i<names.Length-1)
+    { Console.WriteLine(names[i]+", "); }// After all elements except last one should be ", " - also on the end of lines.
+    else { Console.WriteLine(names[i]+"."); }// After last element should be ".".
+        
+}
+
 void PrintGroups(string[] t, int perLine)
 {
+    for (int i = 0;i < t.Length; i++) 
+    {
+        Console.Write(t[i]);
 
-    // Write required code.
+        if ((i+1) % perLine == 0 && i < t.Length-1)
+        {Console.Write(",\n");}
+
+        else if (i < t.Length -1)
+        { Console.Write(", "); }
+
+        else { Console.Write("."); }
+    }
 
 }
 
-
 // Print all array elements in *perLine* columns.
 // Each column must have given *width* (number of chars).
+
+
 // Columns should be separated by "| ".
 // If element is too long it should be trimmed.
 
 void PrintColumns(string[] t, int perLine, int width)
 {
+    for (int i = 0; i < t.Length; i++)
+    {
+        string name = t[i].Length > width ? t[i].Substring(0, width) : t[i]; //przycinanie postaci jak jest za długa
+        name = name.PadRight(width);
 
-    // Write required code.
+        Console.Write(name);
+
+        if ((i+1) % perLine == 0 || i == t.Length - 1) 
+        {
+            Console.WriteLine();
+        }
+        else 
+        {
+            Console.Write(" | ");
+        }
+
+    }
+    
 
 }
 
